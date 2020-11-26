@@ -33,6 +33,10 @@ module.exports = {
     // URL of your website
     shopUrl: process.env.SITE_URL,
 
+    // Page Webhooks fields that you want to subscribe
+    pageWebhookFields: "messages, messaging_postbacks, messaging_optins, \
+    message_deliveries, messaging_referrals",
+
     // Persona IDs
     personas: {},
 

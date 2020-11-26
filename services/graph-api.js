@@ -67,8 +67,7 @@ module.exports = class GraphAPi {
             `Setting app ${config.appId} callback url to ${config.webhookUrl}`
         );
 
-        let fields = "messages, messaging_postbacks, messaging_optins, \
-      message_deliveries, messaging_referrals";
+        let fields = config.pageWebhookFields;
 
         if (customFields !== undefined) {
             fields = fields + ", " + customFields;
@@ -106,8 +105,7 @@ module.exports = class GraphAPi {
         // https://developers.facebook.com/docs/graph-api/reference/page/subscribed_apps
         console.log(`Subscribing app ${config.appId} to page ${config.pageId}`);
 
-        let fields = "messages, messaging_postbacks, messaging_optins, \
-      message_deliveries, messaging_referrals";
+        let fields = config.pageWebhookFields;
 
         if (customFields !== undefined) {
             fields = fields + ", " + customFields;
