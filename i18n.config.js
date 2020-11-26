@@ -1,6 +1,7 @@
 
 const i18n = require("i18n");
 const path = require("path");
+const config = require("./services/config");
 
 i18n.configure({
   locales: [
@@ -9,7 +10,7 @@ i18n.configure({
     "ru_RU",
 
   ],
-  defaultLocale: "en_US",
+  defaultLocale: config.defaultLocale,
   directory: path.join(__dirname, "locales"),
   objectNotation: true,
   api: {

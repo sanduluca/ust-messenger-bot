@@ -119,7 +119,7 @@ module.exports = class Profile {
     }
 
     getGreetingText(locale) {
-        let param = locale === "en_US" ? "default" : locale;
+        let param = locale === config.defaultLocale ? "default" : locale;
 
         i18n.setLocale(locale);
 
@@ -135,7 +135,7 @@ module.exports = class Profile {
     }
 
     getMenuItems(locale) {
-        let param = locale === "en_US" ? "default" : locale;
+        let param = locale === config.defaultLocale ? "default" : locale;
 
         i18n.setLocale(locale);
 

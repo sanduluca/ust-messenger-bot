@@ -39,6 +39,8 @@ module.exports = {
 
     userProfileFields: "first_name, last_name, gender, locale, timezone",
 
+    defaultLocale: "en_US",
+
     // Persona IDs
     personas: {},
 
