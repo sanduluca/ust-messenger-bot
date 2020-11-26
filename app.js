@@ -4,11 +4,11 @@
 // Imports dependencies and set up http server
 const express = require("express"),
     { urlencoded, json } = require("body-parser"),
-    crypto = require("crypto"),
+    { verifyRequestSignature } = require("./helpers/verifyRequestSignature"),
     path = require("path"),
     config = require("./services/config"),
-    routes = require('./routes')
-app = express();
+    routes = require('./routes'),
+    app = express();
 
 
 // Parse application/x-www-form-urlencoded
@@ -29,30 +29,12 @@ app.set("view engine", "ejs");
 
 app.use('/', routes);
 
-// Verify that the callback came from Facebook.
-function verifyRequestSignature(req, res, buf) {
-    var signature = req.headers["x-hub-signature"];
-
-    if (!signature) {
-        console.log("Couldn't validate the signature.");
-    } else {
-        var elements = signature.split("=");
-        var signatureHash = elements[1];
-        var expectedHash = crypto
-            .createHmac("sha1", config.appSecret)
-            .update(buf)
-            .digest("hex");
-        if (signatureHash != expectedHash) {
-            throw new Error("Couldn't validate the request signature.");
-        }
-    }
-}
 
 // Check if all environment variables are set
 config.checkEnvVariables();
 
 // listen for requests :)
-var listener = app.listen(config.port, function () {
+const listener = app.listen(config.port, function () {
     console.log("Your app is listening on port " + listener.address().port);
 
     if (

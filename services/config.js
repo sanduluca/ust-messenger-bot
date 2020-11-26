@@ -53,7 +53,7 @@ module.exports = {
   },
 
   mode: {
-    ALL: "ALL",
+    ALL: "all",
     SUBSCRIBE: "subscribe",
     WEBHOOK: "webhook",
     PROFILE: "profile",

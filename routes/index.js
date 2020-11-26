@@ -1,14 +1,12 @@
 const express = require('express');
-const router = express.Router();
-
-// Imports dependencies and set up http server
-
 const Receive = require("../services/receive");
 const GraphAPi = require("../services/graph-api");
 const User = require("../services/user");
 const config = require("../services/config");
 const i18n = require("../i18n.config");
-var users = {};
+
+const router = express.Router();
+let users = {};
 
 // Respond with index file when a GET request is made to the homepage
 router.get("/", function (_req, res) {
@@ -134,12 +132,12 @@ router.post("/webhook", (req, res) => {
 // Set up your App's Messenger Profile
 router.get("/profile", (req, res) => {
     let token = req.query["verify_token"];
-    let mode = req.query["mode"];
+    let mode = req.query["mode"].toLowerCase();
 
     if (!config.webhookUrl.startsWith("https://")) {
         res.status(200).send("ERROR - Need a proper API_URL in the .env file");
     }
-    var Profile = require("./services/profile.js");
+    let Profile = require("../services/profile.js");
     Profile = new Profile();
 
     // Checks if a token and mode is in the query string of the request
@@ -191,3 +189,5 @@ router.get("/profile", (req, res) => {
         res.sendStatus(404);
     }
 });
+
+module.exports = router;
