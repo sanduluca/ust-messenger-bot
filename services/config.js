@@ -37,6 +37,8 @@ module.exports = {
     pageWebhookFields: "messages, messaging_postbacks, messaging_optins, \
     message_deliveries, messaging_referrals",
 
+    userProfileFields: "first_name, last_name, gender, locale, timezone",
+
     // Persona IDs
     personas: {},
 

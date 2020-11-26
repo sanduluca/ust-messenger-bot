@@ -156,7 +156,7 @@ module.exports = class GraphAPi {
                 uri: `${config.mPlatfom}/${senderPsid}`,
                 qs: {
                     access_token: config.pageAccesToken,
-                    fields: "first_name, last_name, gender, locale, timezone"
+                    fields: config.userProfileFields
                 },
                 method: "GET"
             })
