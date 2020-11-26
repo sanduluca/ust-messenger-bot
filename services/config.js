@@ -52,6 +52,17 @@ module.exports = {
     return this.mPlatformDomain + "/" + this.mPlatformVersion;
   },
 
+  mode: {
+    ALL: "ALL",
+    SUBSCRIBE: "subscribe",
+    WEBHOOK: "webhook",
+    PROFILE: "profile",
+    PERSONAS: "personas",
+    NLP: "nlp",
+    DOMAINS: "domains",
+    PRIVATE_REPLY: "private-reply",
+  },
+
   // URL of your webhook endpoint
   get webhookUrl() {
     return this.appUrl + "/webhook";
