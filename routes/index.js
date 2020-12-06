@@ -1,12 +1,11 @@
 const express = require('express');
 const Receive = require("../services/receive");
 const GraphAPi = require("../services/graph-api");
-const User = require("../services/user");
+const User = require('../models/User')
 const config = require("../services/config");
 const i18n = require("../i18n.config");
 
 const router = express.Router();
-let users = {};
 
 // Respond with index file when a GET request is made to the homepage
 router.get("/", function (_req, res) {
@@ -35,7 +34,7 @@ router.get("/webhook", (req, res) => {
 });
 
 // Creates the endpoint for your webhook
-router.post("/webhook", (req, res) => {
+router.post("/webhook", async (req, res) => {
     let body = req.body;
 
     // Checks if this is an event from a page subscription
@@ -44,7 +43,7 @@ router.post("/webhook", (req, res) => {
         res.status(200).send("EVENT_RECEIVED");
 
         // Iterates over each entry - there may be multiple if batched
-        body.entry.forEach(function (entry) {
+        body.entry.forEach(async function (entry) {
             if ("changes" in entry) {
                 // Handle Page Changes event
                 let receiveMessage = new Receive();
@@ -88,19 +87,25 @@ router.post("/webhook", (req, res) => {
             // Get the sender PSID
             let senderPsid = webhookEvent.sender.id;
 
-            if (!(senderPsid in users)) {
-                let user = new User(senderPsid);
+            let user = await User.findOne({ psid: senderPsid })
+
+            if (!user) {
+                user = new User({ psid: senderPsid })
+                user = await user.save()
 
                 GraphAPi.getUserProfile(senderPsid)
-                    .then(userProfile => {
-                        user.setProfile(userProfile);
+                    .then(async (userProfile) => {
+                        user.firstName = userProfile.firstName
+                        user.lastName = userProfile.lastName
+                        user.locale = userProfile.locale
+                        user.timezone = userProfile.timezone
+                        user.gender = userProfile.gender
+                        user = await user.save()
                     })
                     .catch(error => {
                         // The profile is unavailable
                         console.log("Profile is unavailable:", error);
-                    })
-                    .finally(() => {
-                        users[senderPsid] = user;
+                    }).finally(() => {
                         i18n.setLocale(user.locale);
                         console.log(
                             "New Profile PSID:",
@@ -108,18 +113,18 @@ router.post("/webhook", (req, res) => {
                             "with locale:",
                             i18n.getLocale()
                         );
-                        let receiveMessage = new Receive(users[senderPsid], webhookEvent);
+                        let receiveMessage = new Receive(user, webhookEvent);
                         return receiveMessage.handleMessage();
                     });
             } else {
-                i18n.setLocale(users[senderPsid].locale);
+                i18n.setLocale(user.locale);
                 console.log(
                     "Profile already exists PSID:",
                     senderPsid,
                     "with locale:",
                     i18n.getLocale()
                 );
-                let receiveMessage = new Receive(users[senderPsid], webhookEvent);
+                let receiveMessage = new Receive(user, webhookEvent);
                 return receiveMessage.handleMessage();
             }
         });
