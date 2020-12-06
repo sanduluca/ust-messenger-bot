@@ -16,6 +16,13 @@ const ENV_VARS = [
 ];
 
 module.exports = {
+    mongodb: process.env.MONGODB,
+    mongodbOptions: {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        useFindAndModify: false,
+        useCreateIndex: true
+    },
     // Messenger Platform API
     mPlatformDomain: "https://graph.facebook.com",
     mPlatformVersion: "v3.2",

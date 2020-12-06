@@ -8,7 +8,8 @@ const express = require("express"),
     path = require("path"),
     config = require("./services/config"),
     routes = require('./routes'),
-    app = express();
+    app = express(),
+    mongoose = require('mongoose');
 
 
 // Parse application/x-www-form-urlencoded
@@ -17,6 +18,10 @@ app.use(
         extended: true
     })
 );
+
+mongoose.connect(config.mongodb, config.mongodbOptions, () => {
+    console.log('Connected to mongodb database')
+});
 
 // Parse application/json. Verify that callback came from Facebook
 app.use(json({ verify: verifyRequestSignature }));
