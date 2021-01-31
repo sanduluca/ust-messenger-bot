@@ -1,74 +1,49 @@
 {
-  "profile": {
-    "greeting": "Добро пожаловать в магазин Original Coast Clothing, {{user_first_name}}! Нажмите \"Начать\", чтобы написать нашему боту. Хотите такой же бот? Перейдите по адресу https://fb.me/get-sample-oc."
-  },
-  "menu": {
-    "support": "Служба поддержки клиентов",
-    "order": "Информация по заказу",
-    "help": "Поговорить с агентом",
-    "suggestion": "Советы по выбору одежды",
-    "shop": "В магазин",
-    "start_over": "Начать заново"
-  },
-  "get_started": {
-    "welcome": "Здравствуйте, {{userFirstName}}! Добро пожаловать в магазин Original Coast Clothing! У нас вы найдете одежду на любой случай.",
-    "guidance": "Для выбора функций используйте меню ниже.",
-    "help": "Чем мы можем вам помочь?"
-  },
-  "leadgen": {
-    "promo": "Здравствуйте, {{userFirstName}}! Подбирать одежду теперь гораздо проще и удобнее.",
-    "title": "Купон на скидку 50 %",
-    "subtitle": "Вот ваш купон",
-    "apply": "Применить скидку",
-    "coupon": "Теперь вы можете ознакомиться с летней коллекцией, скидку на которую дает ваш купон."
-  },
-  "curation": {
-    "prompt": "Подбираете одежду себе или кому-то ещё?",
-    "occasion": "Отлично. Начнем! На какой случай вы подбираете одежду?",
-    "price": "Сколько вы планируете потратить?",
-    "me": "Себе!",
-    "someone": "Другому",
-    "work": "Для работы",
-    "dinner": "Для отдыха",
-    "party": "Для вечеринок",
-    "sales": "Поговорить с консультантом",
-    "shop": "Купить эту одежду",
-    "title": "Коллекция \"Лето 2019\"",
-    "subtitle": "Рекомендуем",
-    "show": "Другой образ"
-  },
-  "order": {
-    "prompt": "Будем рады помочь вам. Выбрать из списка ниже",
-    "search": "Поиск по номеру заказа",
-    "account": "Привязать мой аккаунт",
-    "dialog": "Диалог \"Связывание аккаунтов\"",
-    "searching": "Поиск последнего заказа...",
-    "number": "Конечно! Напишите номер заказа.",
-    "status": "Ваш заказ отправлен. Вы получите его примерно через 3 дня."
-  },
-  "care": {
-    "prompt": "Выберите категорию запроса, чтобы мы смогли направить вас в нужный отдел.",
-    "order": "Вопросы по заказу",
-    "billing": "Проблемы с оплатой",
-    "other": "Другое",
-    "issue": "Здравствуйте, {{userFirstName}}! Меня зовут {{agentFirstName}}. Я с радостью отвечу на любые ваши вопросы по следующей теме: {{topic}}.",
-    "default": "Здравствуйте, {{userFirstName}}! Меня зовут {{agentFirstName}}, сегодня я ваш консультант. Чем я могу вам помочь?",
-    "style": "Здравствуйте, {{userFirstName}}! Меня зовут {{agentFirstName}}. Я с радостью отвечу на любые вопросы по нашей летней коллекции.",
-    "end": "Демонстрация окончена. Воспользуйтесь платформой Messenger для развития бизнеса. О том, как создать похожий бот, см. по адресу https://fb.me/get-sample-oc.",
-    "help": "Справка"
-  },
-  "survey": {
-    "prompt": "Здравствуйте! Нам было бы интересно узнать, какое впечатление на вас произвел консультант по имени {{agentFirstName}}.",
-    "positive": "Благодарим за отзыв.",
-    "neutral": "Благодарим за отзыв. Если вы заметили что-то, что мы могли бы улучшить, отправляйте нам свои предложения в комментариях с хэштегом #предложение.",
-    "negative": "Спасибо за информацию! Жаль, что так вышло. Сообщите нам, можем ли мы исправить ситуацию.",
-    "suggestion": "Ваша рекомендация отправлена нашим специалистам. Если вам необходимо пообщаться с нами прямо сейчас, просто опубликуйте комментарий \"Помогите\"."
-  },
-  "chat_plugin": {
-    "prompt": "Спасибо за посещение нашего магазина, обязательно ознакомьтесь со всеми великолепными стилями, которые есть в летнем разделе."
-  },
-  "fallback": {
-    "any": "Извините, но я не понимаю, что значит \"{{message}}\".",
-    "attachment": "Спасибо за вложение. Вы можете прямо сейчас связаться с агентом, чтобы он его посмотрел, или начать заново."
-  }
+    "profile": {
+        "greeting": "{{user_first_name}}, bine ai venit pe pagina Universitatii de Stat din Tiraspol cu sediul la Chisinau! Apasa \"Incepe\", pentru a scrie Bot-ului nostru. Site-ul nostru: https://ust.md/"
+    },
+    "menu": {
+        "support": "Suport",
+        "taxes": "Taxe universitare",
+        "help": "Discuta cu operator",
+        "faculties": "Facultati",
+        "site": "Site-ul universitatii",
+        "start_over": "Începeți din nou"
+    },
+    "get_started": {
+        "welcome": "Buna, {{userFirstName}}! Bine ai venit la UST! Prima universitate din Republica Moldova.",
+        "guidance": "Pentru alegerea optiunilor, foloseste meniul de mai jos.",
+        "help": "Cu ce te putem ajuta?"
+    },
+    "survey": {
+        "prompt": "Bună, vreau să primesc feedback rapid despre experiența dvs. recentă cu {{agentFirstName}}",
+        "positive": "Multumesc pentru feedback",
+        "neutral": "Vă mulțumim pentru feedback, dacă ar trebui să îmbunătățim ceva, nu ezitați să comentați cu #suggestion",
+        "negative": "Mulțumim că ne-ai spus. Ne pare rău să aud asta, dacă putem face ceva pentru a transforma acest lucru, anunțați-ne",
+        "suggestion": "Sugestia dvs. a fost înregistrată pentru revizuirea viitoare de către echipă. Dacă este ceva ce trebuie să vă răspundem acum, doar să comentați \"Ajutor\""
+    },
+    "fallback": {
+        "any": "Îmi pare rău, dar nu recunosc \"{{message}}\".",
+        "attachment": "Vă mulțumim că ați trimis acest atașament, vă putem conecta la un operator pentru a-l examina sau putem începe din nou"
+    },
+    "faculty": {
+        "fmti": "Fizica, Matematica si Tehnologii Informationale",
+        "geografy": "Geografie",
+        "biology_chemestry": "Biologie si chimie",
+        "philology": "Filologie",
+        "pedagogy": "Pedagogie",
+        "general_information": "Informatii generale",
+        "study_forms": "Forme de studii",
+        "schedule": "Orarul facultatii",
+        "our_faculties": "Acestea sunt facultatile noastre.",
+        "what_study_forms": "Ce forma de studii va intereseaza la facultatea de {{faculty}}?"
+    },
+    "study_form": {
+        "bachelor": "Licenta",
+        "master": "Masterat",
+        "phd": "Doctorat"
+    },
+    "specialities": {
+        "fmti": "Învățământ cu frecvență: \n1. Pedagogie în Învăţământul Primar şi Pedagogie Preşcolară – 4 ani. \n2. Pedagogie în Învăţământul Primar şi Limbă Engleză – 4 ani. \n3. Pedagogie în Învăţământul Primar şi Psihopedagogie – 4 ani.\n4. Pedagogie în Învăţământul Primar – 3 ani.\n5. Psihopedagogie – 3 ani.\n6. Pedagogie Preşcolară – 3 ani. <<NEW>>Învățământ cu frecvență redusă:\n1. Pedagogie în Învăţământul Primar – 4 ani\n2. Psihopedagogie – 4 ani\n3. Pedagogie Preşcolară – 4 ani"
+    }
 }

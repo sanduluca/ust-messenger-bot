@@ -2,10 +2,11 @@
 "use strict";
 
 // Imports dependencies
-const GraphAPi = require("./graph-api"),
-    i18n = require("../i18n.config"),
-    config = require("./config"),
-    locales = i18n.getLocales();
+const GraphAPi = require("./graph-api")
+const i18n = require("../i18n.config")
+const config = require("../config")
+const _payload = require("../config/payload")
+const locales = i18n.getLocales()
 
 module.exports = class Profile {
     setWebhook() {
@@ -89,7 +90,7 @@ module.exports = class Profile {
     getGetStarted() {
         return {
             get_started: {
-                payload: "GET_STARTED"
+                payload: _payload.GET_STARTED
             }
         };
     }
@@ -144,23 +145,18 @@ module.exports = class Profile {
             composer_input_disabled: false,
             call_to_actions: [
                 {
-                    title: i18n.__("menu.order"),
+                    title: i18n.__("menu.faculties"),
                     type: "postback",
-                    payload: "TRACK_ORDER"
+                    payload: _payload.FACULTY
                 },
                 {
                     title: i18n.__("menu.help"),
                     type: "postback",
-                    payload: "CARE_HELP"
-                },
-                {
-                    title: i18n.__("menu.suggestion"),
-                    type: "postback",
-                    payload: "CURATION"
+                    payload: _payload.HELP
                 },
                 {
                     type: "web_url",
-                    title: i18n.__("menu.shop"),
+                    title: i18n.__("menu.site"),
                     url: config.shopUrl,
                     webview_height_ratio: "full"
                 }

@@ -13,7 +13,7 @@
 // Imports dependencies
 const request = require("request"),
     camelCase = require("camelcase"),
-    config = require("./config");
+    config = require("../config");
 
 module.exports = class GraphAPi {
     static callSendAPI(requestBody) {

@@ -1,5 +1,5 @@
 const crypto = require("crypto");
-const config = require("../services/config")
+const config = require("../config")
 
 const verifyRequestSignature = (req, res, buf) => {
     const signature = req.headers["x-hub-signature"];

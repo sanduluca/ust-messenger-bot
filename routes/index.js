@@ -2,7 +2,7 @@ const express = require('express');
 const Receive = require("../services/receive");
 const GraphAPi = require("../services/graph-api");
 const User = require('../models/User')
-const config = require("../services/config");
+const config = require("../config");
 const i18n = require("../i18n.config");
 
 const router = express.Router();

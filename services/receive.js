@@ -1,13 +1,12 @@
 
 "use strict";
 
-const Curation = require("./curation"),
-    Order = require("./order"),
-    Response = require("./response"),
-    Care = require("./care"),
-    Survey = require("./survey"),
-    GraphAPi = require("./graph-api"),
-    i18n = require("../i18n.config");
+
+const Response = require("./response")
+const GraphAPi = require("./graph-api")
+const i18n = require("../i18n.config")
+const _payload = require("../config/payload")
+const Faculty = require("./faculty")
 
 module.exports = class Receive {
     constructor(user, webhookEvent) {
@@ -18,6 +17,7 @@ module.exports = class Receive {
     // Check if the event is a message or postback and
     // call the appropriate handler function
     handleMessage() {
+        this.sendTyping()
         let event = this.webhookEvent;
 
         let responses;
@@ -76,29 +76,22 @@ module.exports = class Receive {
             message.includes("start over")
         ) {
             response = Response.genNuxMessage(this.user);
-        } else if (Number(message)) {
-            response = Order.handlePayload("ORDER_NUMBER");
-        } else if (message.includes("#")) {
-            response = Survey.handlePayload("CSAT_SUGGESTION");
-        } else if (message.includes(i18n.__("care.help").toLowerCase())) {
-            let care = new Care(this.user, this.webhookEvent);
-            response = care.handlePayload("CARE_HELP");
         } else {
             response = [
-                Response.genText(
+                ...Response.genText(
                     i18n.__("fallback.any", {
                         message: this.webhookEvent.message.text
                     })
                 ),
-                Response.genText(i18n.__("get_started.guidance")),
-                Response.genQuickReply(i18n.__("get_started.help"), [
+                ...Response.genText(i18n.__("get_started.guidance")),
+                Response.genQuickReplys(i18n.__("get_started.help"), [
                     {
-                        title: i18n.__("menu.suggestion"),
-                        payload: "CURATION"
+                        title: i18n.__("menu.faculties"),
+                        payload: _payload.FACULTY
                     },
                     {
                         title: i18n.__("menu.help"),
-                        payload: "CARE_HELP"
+                        payload: _payload.HELP
                     }
                 ])
             ];
@@ -115,14 +108,14 @@ module.exports = class Receive {
         let attachment = this.webhookEvent.message.attachments[0];
         console.log("Received attachment:", `${attachment} for ${this.user.psid}`);
 
-        response = Response.genQuickReply(i18n.__("fallback.attachment"), [
+        response = Response.genQuickReplys(i18n.__("fallback.attachment"), [
             {
                 title: i18n.__("menu.help"),
-                payload: "CARE_HELP"
+                payload: _payload.HELP
             },
             {
                 title: i18n.__("menu.start_over"),
-                payload: "GET_STARTED"
+                payload: _payload.GET_STARTED
             }
         ]);
 
@@ -168,41 +161,14 @@ module.exports = class Receive {
         let response;
 
         // Set the response based on the payload
-        if (
-            payload === "GET_STARTED" ||
-            payload === "DEVDOCS" ||
-            payload === "GITHUB"
-        ) {
+        if (payload === "GET_STARTED") {
             response = Response.genNuxMessage(this.user);
+        } else if (payload.includes(_payload.FACULTY)) {
+            let faculty = new Faculty(this.user, this.webhookEvent)
+            response = faculty.handlePayload(payload)
         } else if (payload.includes("CURATION") || payload.includes("COUPON")) {
-            let curation = new Curation(this.user, this.webhookEvent);
-            response = curation.handlePayload(payload);
-        } else if (payload.includes("CARE")) {
-            let care = new Care(this.user, this.webhookEvent);
-            response = care.handlePayload(payload);
-        } else if (payload.includes("ORDER")) {
-            response = Order.handlePayload(payload);
-        } else if (payload.includes("CSAT")) {
-            response = Survey.handlePayload(payload);
-        } else if (payload.includes("CHAT-PLUGIN")) {
-            response = [
-                Response.genText(i18n.__("chat_plugin.prompt")),
-                Response.genText(i18n.__("get_started.guidance")),
-                Response.genQuickReply(i18n.__("get_started.help"), [
-                    {
-                        title: i18n.__("care.order"),
-                        payload: "CARE_ORDER"
-                    },
-                    {
-                        title: i18n.__("care.billing"),
-                        payload: "CARE_BILLING"
-                    },
-                    {
-                        title: i18n.__("care.other"),
-                        payload: "CARE_OTHER"
-                    }
-                ])
-            ];
+            // let curation = new Curation(this.user, this.webhookEvent);
+            // response = curation.handlePayload(payload);
         } else {
             response = {
                 text: `This is a default postback message for payload: ${payload}!`
@@ -217,14 +183,14 @@ module.exports = class Receive {
             i18n.__("get_started.guidance") + ". " +
             i18n.__("get_started.help");
 
-        let response = Response.genQuickReply(welcomeMessage, [
+        let response = Response.genQuickReplys(welcomeMessage, [
             {
-                title: i18n.__("menu.suggestion"),
-                payload: "CURATION"
+                title: i18n.__("menu.faculties"),
+                payload: _payload.FACULTY
             },
             {
                 title: i18n.__("menu.help"),
-                payload: "CARE_HELP"
+                payload: _payload.HELP
             }
         ]);
 
@@ -267,10 +233,21 @@ module.exports = class Receive {
             };
         }
 
-        setTimeout(() => GraphAPi.callSendAPI(requestBody), delay);
+        setTimeout(() => {
+            GraphAPi.callSendAPI(requestBody)
+        }, delay);
     }
 
     firstEntity(nlp, name) {
         return nlp && nlp.entities && nlp.entities[name] && nlp.entities[name][0];
+    }
+
+    sendTyping() {
+        GraphAPi.callSendAPI({
+            recipient: {
+                id: this.user.psid
+            },
+            sender_action: "typing_on"
+        })
     }
 };

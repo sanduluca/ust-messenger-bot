@@ -46,7 +46,7 @@ module.exports = {
 
     userProfileFields: "first_name, last_name, gender, locale, timezone",
 
-    defaultLocale: "en_US",
+    defaultLocale: "ro_RO",
 
     // Persona IDs
     personas: {},
@@ -57,6 +57,8 @@ module.exports = {
     get mPlatfom() {
         return this.mPlatformDomain + "/" + this.mPlatformVersion;
     },
+
+    newMessageSign: '<<NEW>>',
 
     mode: {
         ALL: "all",

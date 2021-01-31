@@ -7,7 +7,7 @@ const Response = require("./response"),
 
 module.exports = class Survey {
     static genAgentRating(agent) {
-        let response = Response.genQuickReply(
+        let response = Response.genQuickReplys(
             i18n.__("survey.prompt", {
                 agentFirstName: agent
             }),
@@ -46,7 +46,7 @@ module.exports = class Survey {
                 break;
 
             case "CSAT_BAD":
-                response = Response.genQuickReply(i18n.__("survey.negative"), [
+                response = Response.genQuickReplys(i18n.__("survey.negative"), [
                     {
                         title: i18n.__("menu.help"),
                         payload: "CARE_HELP"
