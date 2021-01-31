@@ -39,7 +39,7 @@ module.exports = class Response {
   }
 
   static genGenericTemplate(image_url, title, subtitle, buttons) {
-    let response = Response.genEmptyGenericTemplate([
+    let response = Response.genGenericTemplateFrom([
       {
         title,
         subtitle,
@@ -51,7 +51,7 @@ module.exports = class Response {
     return response;
   }
 
-  static genEmptyGenericTemplate(elements) {
+  static genGenericTemplateFrom(elements) {
     let response = {
       attachment: {
         type: "template",
@@ -75,7 +75,7 @@ module.exports = class Response {
   }
 
   static genImageTemplate(image_url, title, subtitle = "") {
-    let response = Response.genEmptyGenericTemplate([
+    let response = Response.genGenericTemplateFrom([
       {
         title,
         subtitle,
