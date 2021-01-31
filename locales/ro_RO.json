@@ -26,6 +26,8 @@
         "any": "Îmi pare rău, dar nu recunosc \"{{message}}\".",
         "attachment": "Vă mulțumim că ați trimis acest atașament, vă putem conecta la un operator pentru a-l examina sau putem începe din nou"
     },
+    "contact": "Adresa: \nStr. Ghenadie Iablocikin, 5, MD-2069,Chișinău, Republica Moldova <<NEW>>Comisia de admitere\nTel: +373 22-75-49-06\nE-mail: admiterea@ust.md<<NEW>>Secretariat\nTel. (Fax): 022 75-49-24\nE-mail: contact@ust.md",
+    "address": "Blocul 1 (central): \nStr. Ghenadie Iablocikin, 5, MD-2069, Chișinău, Republica Moldova<<NEW>>Blocul 2: Strada Drumul Viilor 26, Chișinău, Republica Moldova",
     "faculty": {
         "fmti": "Fizica, Matematica si Tehnologii Informationale",
         "geografy": "Geografie",

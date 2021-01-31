@@ -76,6 +76,11 @@ module.exports = class Receive {
             message.includes("start over")
         ) {
             response = Response.genNuxMessage(this.user);
+        }
+        else if (message.includes('adresa') || message.includes('adresă') || message.includes('адрес')) {
+            response = Response.genText(i18n.__("address"))
+        } else if (message.includes('contact') || message.includes('контакт')) {
+            response = Response.genText(i18n.__("contact"))
         } else {
             response = [
                 ...Response.genText(
