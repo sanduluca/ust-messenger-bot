@@ -43,7 +43,38 @@
         "master": "Masterat",
         "phd": "Doctorat"
     },
-    "specialities": {
-        "fmti": "Învățământ cu frecvență: \n1. Pedagogie în Învăţământul Primar şi Pedagogie Preşcolară – 4 ani. \n2. Pedagogie în Învăţământul Primar şi Limbă Engleză – 4 ani. \n3. Pedagogie în Învăţământul Primar şi Psihopedagogie – 4 ani.\n4. Pedagogie în Învăţământul Primar – 3 ani.\n5. Psihopedagogie – 3 ani.\n6. Pedagogie Preşcolară – 3 ani. <<NEW>>Învățământ cu frecvență redusă:\n1. Pedagogie în Învăţământul Primar – 4 ani\n2. Psihopedagogie – 4 ani\n3. Pedagogie Preşcolară – 4 ani"
+    "study_form_specialities": {
+        "fmti": {
+            "bachelor": "Învățământ cu frecvență: \n1. Pedagogie în Învăţământul Primar şi Pedagogie Preşcolară – 4 ani. \n2. Pedagogie în Învăţământul Primar şi Limbă Engleză – 4 ani. \n3. Pedagogie în Învăţământul Primar şi Psihopedagogie – 4 ani.\n4. Pedagogie în Învăţământul Primar – 3 ani.\n5. Psihopedagogie – 3 ani.\n6. Pedagogie Preşcolară – 3 ani. <<NEW>>Învățământ cu frecvență redusă:\n1. Pedagogie în Învăţământul Primar – 4 ani\n2. Psihopedagogie – 4 ani\n3. Pedagogie Preşcolară – 4 ani",
+            "master": "Specialități:\nMatematici Moderne şi Tehnologii Moderne de Instruire\nTehnologii Informaţionale în Instruire\nFizică modernă şi Tehnologii Formative\nManagement Educaţional\nManagement şi Comunicare Instituţională",
+            "phd": "Specialități:\n Fizică didactică\nTeoria generală a educației\nManagement educațional\nPedagogie socială\nDidactică preșcolară\nDidactică școlară (pe trepte și discipline de învățământ)"
+        },
+        "geografy": {
+            "bachelor": "Informatia va urma...",
+            "master": "Informatia va urma...",
+            "phd": "Informatia va urma..."
+        },
+        "biology_chemestry": {
+            "bachelor": "Informatia va urma...",
+            "master": "Informatia va urma...",
+            "phd": "Informatia va urma..."
+        },
+        "pedagogy": {
+            "bachelor": "Informatia va urma...",
+            "master": "Informatia va urma...",
+            "phd": "Informatia va urma..."
+        },
+        "philology": {
+            "bachelor": "Informatia va urma...",
+            "master": "Informatia va urma...",
+            "phd": "Informatia va urma..."
+        }
+    },
+    "general_info": {
+        "fmti": "Facultatea Fizică, Matematică şi Tehnologii Informaţionalea fost înfiinţată în anul 1930. Pe parcursul celor 89 de ani facultatea a pregătit circa  20 000 de specialiști. <<NEW>>La facultate activează 80 de cadre didactice, dintre care 7 profesori universitari, doctori habilitaţi, 34 conferenţiari universitari, doctori, 24 lectori superiori, 15 lectori universitari.<<NEW>>Facultatea FMTI colaborează cu instituţii de profil din Romania (Universitatea din Craiova,  Universitatea “Ştefan cel Mare” din Suceava, Universitatea „ Al. I. Cuza” din Iaşi, Casa Corpului Didactic din Suceava), Ucraina (Universitatea Națională din Cernăuţi), Slovenia (Universitatea din Maribor), Belarusi (Universitatea din Minsk), China (Universitatea Normală din Shanghai), Polonia (Universitatea Pedagogică din Cracov), Rusia (Institutul Fizico-Tehnic „A. Ioffe” din Sankt-Petersburg), Corea (din Institutul de nanoelectronică din Seul) etc.",
+        "geografy": "Facultatea de Geografie a fost întemeiată la 30 octombrie 1938 în cadrul Institutului Pedagogic Moldovenesc. Fondatorul şi primul decan al facultăţii a fost cunoscutul geograf Macarie Radul.<<NEW>>La facultate activează 22 de cadre didactice de bază şi angajate prin cumul, dintre care 16 conferenţiari universitari, doctori și 6 lectori universitari.<<NEW>>Facultatea de Geografie este amplasată în Blocul de studii din str. Drumul Viilor, 26 A.<<NEW>>Facultatea de Geografie promovează cooperarea regională, europeană şi internaţională. Dominant se pune accent pe promovarea şi dezvoltarea acordurilor existente, precum şi pe încheierea unor noi acorduri.",
+        "biology_chemestry": "Facultatea Biologie şi chimie a fost înfiinţată în anul 1930. Din anul 1930 şi până în prezent au fost pregătiţi un număr impunător de specialişti biologi, ecologi, chimişti. Au absolvit facultatea circa 15 000 persoane.<<NEW>>Facultatea dispune de un colectiv didactic experimentat. Circa 80% din profesorii facultăţii posedă titluri ştiinţifice de doctori habilitaţi şi doctori în ştiinţe biologice, chimice, ecologice, pedagogice şi agricole.",
+        "philology": "Facultatea Filologie a fost constituită prin ord. nr.1 din 1.X.1930 al primului Director (Av.Bihman) al Institutului de Învăţâmânt Public ca o unitate structurală de bază a instituției.<<NEW>>La facultate activează 27 cadre didactice dintre care 3 profesori universitari, doctori habilitați; 14 conferențiari universitari, doctori; 3 lectori universitari, doctori; 7 lectori universitari.<<NEW>>Facultatea de Filologie pe parcursul activității a stabilit relații de colaborare cu instituții de învățământ superior din diferite țări ale lumii: România, Ucraina, Belorusia, Estonia, Rusia, Polonia.",
+        "pedagogy": "Facultatea Pedagogie a fost fondată în anul 1979 (an declarat de UNESCO Anul Internațional al Copilului). La sfârșitul anilor 80 ai secolului trecut Facultatea devine cea mai numeroasă în cadrul Universității de Stat din Tiraspol.<<NEW>>La Facultate activează 32 de cadre didactice, dintre care 2 profesori universitari, doctori habilitaţi, 1 profesor universitar interimar, 16 conferenţiari universitari, doctori, 9 lectori universitari.<<NEW>>Studenţii Facultății Pedagogie au posibilitatea de a obţine anual burse de studii în universităţile din România, Polonia, Ucraina, Rusia ș.a., mobilitatea academică fiind realizată atât de către studenți cât și de cadrele didactice."
     }
 }
