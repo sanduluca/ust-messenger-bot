@@ -6,10 +6,13 @@
         "support": "Suport",
         "taxes": "Taxe universitare",
         "help": "Discuta cu operator",
+        "admittance": "Admitere",
         "faculties": "Facultati",
         "site": "Site-ul universitatii",
         "start_over": "Începeți din nou"
     },
+    "admittance_info": "Admiterea 2020 – Formular de înregistrare",
+    "complete_now": "Completeaza acum",
     "get_started": {
         "welcome": "Buna, {{userFirstName}}! Bine ai venit la UST! Prima universitate din Republica Moldova.",
         "guidance": "Pentru alegerea optiunilor, foloseste meniul de mai jos.",

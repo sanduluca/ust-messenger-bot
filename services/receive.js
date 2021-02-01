@@ -97,6 +97,10 @@ module.exports = class Receive {
                     {
                         title: i18n.__("menu.help"),
                         payload: _payload.HELP
+                    },
+                    {
+                        title: i18n.__("menu.admittance"),
+                        payload: _payload.ADMITTANCE
                     }
                 ])
             ];
@@ -168,6 +172,14 @@ module.exports = class Receive {
         // Set the response based on the payload
         if (payload === "GET_STARTED") {
             response = Response.genNuxMessage(this.user);
+        } else if (payload === _payload.ADMITTANCE) {
+            response = Response.genButtonTemplate(i18n.__("admittance_info"), [
+                Response.genWebUrlButton(
+                    i18n.__("complete_now"),
+                    'https://ust.md/admiterea-2020-formular-de-inregistrare/',
+                    'tall'
+                )
+            ])
         } else if (payload.includes(_payload.FACULTY)) {
             let faculty = new Faculty(this.user, this.webhookEvent)
             response = faculty.handlePayload(payload)
