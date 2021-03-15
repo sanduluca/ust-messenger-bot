@@ -1,18 +1,20 @@
 "use strict";
 
 // Imports dependencies
-const Response = require("./response");
-const config = require("../config");
-const _payload = require("../config/payload");
-const i18n = require("../i18n.config");
+import Response from "./response"
+import config from "../config"
+import _payload from "../config/payload"
+import i18n from "../i18n.config"
 
-module.exports = class Faculty {
-  constructor(user, webhookEvent) {
+export default class Faculty {
+  user: any
+  webhookEvent: any
+  constructor(user: any, webhookEvent: any) {
     this.user = user;
     this.webhookEvent = webhookEvent;
   }
 
-  handlePayload(payload) {
+  handlePayload(payload: string) {
     let response;
 
     switch (payload) {
@@ -174,19 +176,19 @@ module.exports = class Faculty {
     return response;
   }
 
-  getBachelorQuickReplyBtn(payload) {
+  getBachelorQuickReplyBtn(payload: any) {
     return Response.genQuickReplyBtn(
       `👨‍🎓${i18n.__("study_form.bachelor")}👩‍🎓`,
       payload + `/${_payload.STUDY_FORM.BACHELOR}`
     );
   }
-  getMasterQuickReplyBtn(payload) {
+  getMasterQuickReplyBtn(payload: any) {
     return Response.genQuickReplyBtn(
       `👨‍🏫${i18n.__("study_form.master")}👩‍🏫`,
       payload + `/${_payload.STUDY_FORM.MASTER}`
     );
   }
-  getPHDQuickReplyBtn(payload) {
+  getPHDQuickReplyBtn(payload: any) {
     return Response.genQuickReplyBtn(
       `👨‍⚕️${i18n.__("study_form.phd")}👩‍⚕️`,
       payload + `/${_payload.STUDY_FORM.PHD}`
@@ -253,7 +255,7 @@ module.exports = class Faculty {
     ];
   }
 
-  getFacultyButtons(generalInfoPayload, studyFormPayload, scheduleUrl) {
+  getFacultyButtons(generalInfoPayload: any, studyFormPayload: any, scheduleUrl: string) {
     return [
       Response.genPostbackButton(
         i18n.__("faculty.general_information"),

@@ -1,19 +1,20 @@
-const express = require('express');
-const Receive = require("../services/receive");
-const GraphAPi = require("../services/graph-api");
-const User = require('../models/User')
-const config = require("../config");
-const i18n = require("../i18n.config");
+import express from "express"
+import Receive from "../services/receive"
+import GraphAPi from "../services/graph-api"
+import User from "../models/User"
+import config from "../config"
+import i18n from "../i18n.config"
+import Profile from './../services/profile'
 
 const router = express.Router();
 
 // Respond with index file when a GET request is made to the homepage
-router.get("/", function (_req, res) {
+router.get("/", function (_req: any, res: any) {
     res.render("index");
 });
 
 // Adds support for GET requests to our webhook
-router.get("/webhook", (req, res) => {
+router.get("/webhook", (req: any, res: any) => {
     // Parse the query params
     let mode = req.query["hub.mode"];
     let token = req.query["hub.verify_token"];
@@ -34,7 +35,7 @@ router.get("/webhook", (req, res) => {
 });
 
 // Creates the endpoint for your webhook
-router.post("/webhook", async (req, res) => {
+router.post("/webhook", async (req: any, res: any) => {
     let body = req.body;
 
     // Checks if this is an event from a page subscription
@@ -43,7 +44,7 @@ router.post("/webhook", async (req, res) => {
         res.status(200).send("EVENT_RECEIVED");
 
         // Iterates over each entry - there may be multiple if batched
-        body.entry.forEach(async function (entry) {
+        body.entry.forEach(async function (entry: any) {
             if ("changes" in entry) {
                 // Handle Page Changes event
                 let receiveMessage = new Receive();
@@ -87,14 +88,14 @@ router.post("/webhook", async (req, res) => {
             // Get the sender PSID
             let senderPsid = webhookEvent.sender.id;
 
-            let user = await User.findOne({ psid: senderPsid })
+            let user =  await User.findOne({ psid: senderPsid }).exec()
 
             if (!user) {
                 user = new User({ psid: senderPsid })
                 user = await user.save()
 
                 GraphAPi.getUserProfile(senderPsid)
-                    .then(async (userProfile) => {
+                    .then(async (userProfile: any) => {
                         user.firstName = userProfile.firstName
                         user.lastName = userProfile.lastName
                         user.locale = userProfile.locale
@@ -102,7 +103,7 @@ router.post("/webhook", async (req, res) => {
                         user.gender = userProfile.gender
                         user = await user.save()
                     })
-                    .catch(error => {
+                    .catch((error: any) => {
                         // The profile is unavailable
                         console.log("Profile is unavailable:", error);
                     }).finally(() => {
@@ -135,31 +136,30 @@ router.post("/webhook", async (req, res) => {
 });
 
 // Set up your App's Messenger Profile
-router.get("/profile", (req, res) => {
+router.get("/profile", (req: any, res: any) => {
     let token = req.query["verify_token"];
     let mode = req.query["mode"].toLowerCase();
 
     if (!config.webhookUrl.startsWith("https://")) {
         res.status(200).send("ERROR - Need a proper API_URL in the .env file");
     }
-    let Profile = require("../services/profile.js");
-    Profile = new Profile();
+    const profile = new Profile();
 
     // Checks if a token and mode is in the query string of the request
     if (mode && token) {
         if (token === config.verifyToken) {
             if (mode === config.mode.WEBHOOK || mode === config.mode.ALL) {
-                Profile.setWebhook();
+                profile.setWebhook();
                 res.write(
                     `<p>Set app ${config.appId} call to ${config.webhookUrl}</p>`
                 );
             }
             if (mode === config.mode.PROFILE || mode === config.mode.ALL) {
-                Profile.setThread();
+                profile.setThread();
                 res.write(`<p>Set Messenger Profile of Page ${config.pageId}</p>`);
             }
             if (mode === config.mode.PERSONAS || mode === config.mode.ALL) {
-                Profile.setPersonas();
+                profile.setPersonas();
                 res.write(`<p>Set Personas for ${config.appId}</p>`);
                 res.write(
                     "<p>To persist the personas, add the following variables \
@@ -177,11 +177,11 @@ router.get("/profile", (req, res) => {
                 res.write(`<p>Enable Built-in NLP for Page ${config.pageId}</p>`);
             }
             if (mode === config.mode.DOMAINS || mode === config.mode.ALL) {
-                Profile.setWhitelistedDomains();
+                profile.setWhitelistedDomains();
                 res.write(`<p>Whitelisting domains: ${config.whitelistedDomains}</p>`);
             }
             if (mode === config.mode.PRIVATE_REPLY) {
-                Profile.setPageFeedWebhook();
+                profile.setPageFeedWebhook();
                 res.write(`<p>Set Page Feed Webhook for Private Replies.</p>`);
             }
             res.status(200).end();
@@ -195,4 +195,4 @@ router.get("/profile", (req, res) => {
     }
 });
 
-module.exports = router;
+export default router;

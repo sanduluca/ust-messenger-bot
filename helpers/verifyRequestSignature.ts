@@ -1,8 +1,9 @@
-const crypto = require("crypto");
-const config = require("../config")
+import { IncomingMessage, ServerResponse } from 'http'
+import crypto from "crypto";
+import config from "../config"
 
-const verifyRequestSignature = (req, res, buf) => {
-    const signature = req.headers["x-hub-signature"];
+const verifyRequestSignature = (req: IncomingMessage, _: ServerResponse, buf: Buffer) => {
+    const signature = req.headers["x-hub-signature"] as string;
 
     if (!signature) {
         console.log("Couldn't validate the signature.");
@@ -19,4 +20,4 @@ const verifyRequestSignature = (req, res, buf) => {
     }
 };
 
-module.exports = verifyRequestSignature;
+export default verifyRequestSignature;

@@ -1,22 +1,12 @@
-/**
- * Copyright 2019-present, Facebook, Inc. All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree.
- *
- * Messenger For Original Coast Clothing
- * https://developers.facebook.com/docs/messenger-platform/getting-started/sample-apps/original-coast-clothing
- */
-
 "use strict";
 
 // Imports dependencies
-const request = require("request"),
-    camelCase = require("camelcase"),
-    config = require("../config");
+import request from "request"
+import camelCase from "camelcase"
+import config from "../config"
 
-module.exports = class GraphAPi {
-    static callSendAPI(requestBody) {
+export default class GraphAPi {
+    static callSendAPI(requestBody: any) {
         // Send the HTTP request to the Messenger Platform
         request(
             {
@@ -35,7 +25,7 @@ module.exports = class GraphAPi {
         );
     }
 
-    static callMessengerProfileAPI(requestBody) {
+    static callMessengerProfileAPI(requestBody: any) {
         // Send the HTTP request to the Messenger Profile API
 
         console.log(`Setting Messenger Profile for app ${config.appId}`);
@@ -48,7 +38,7 @@ module.exports = class GraphAPi {
                 method: "POST",
                 json: requestBody
             },
-            (error, _res, body) => {
+            (error: any, _res: any, body: any) => {
                 if (!error) {
                     console.log("Request sent:", body);
                 } else {
@@ -58,7 +48,7 @@ module.exports = class GraphAPi {
         );
     }
 
-    static callSubscriptionsAPI(customFields) {
+    static callSubscriptionsAPI(customFields?: any) {
         // Send the HTTP request to the Subscriptions Edge to configure your webhook
         // You can use the Graph API's /{app-id}/subscriptions edge to configure and
         // manage your app's Webhooks product
@@ -88,7 +78,7 @@ module.exports = class GraphAPi {
                 },
                 method: "POST"
             },
-            (error, _res, body) => {
+            (error: any, _res: any, body: any) => {
                 if (!error) {
                     console.log("Request sent:", body);
                 } else {
@@ -98,7 +88,7 @@ module.exports = class GraphAPi {
         );
     }
 
-    static callSubscribedApps(customFields) {
+    static callSubscribedApps(customFields?: any) {
         // Send the HTTP request to subscribe an app for Webhooks for Pages
         // You can use the Graph API's /{page-id}/subscribed_apps edge to configure
         // and manage your pages subscriptions
@@ -122,7 +112,7 @@ module.exports = class GraphAPi {
                 },
                 method: "POST"
             },
-            error => {
+            (error: any) => {
                 if (error) {
                     console.error("Unable to send message:", error);
                 }
@@ -130,9 +120,9 @@ module.exports = class GraphAPi {
         );
     }
 
-    static async getUserProfile(senderPsid) {
+    static async getUserProfile(senderPsid: any) {
         try {
-            const userProfile = await this.callUserProfileAPI(senderPsid);
+            const userProfile: any = await this.callUserProfileAPI(senderPsid);
 
             for (const key in userProfile) {
                 const camelizedKey = camelCase(key);
@@ -147,9 +137,9 @@ module.exports = class GraphAPi {
         }
     }
 
-    static callUserProfileAPI(senderPsid) {
+    static callUserProfileAPI(senderPsid: any) {
         return new Promise(function (resolve, reject) {
-            let body = [];
+            let body: any[] = [];
 
             // Send the HTTP request to the Graph API
             request({
@@ -160,7 +150,7 @@ module.exports = class GraphAPi {
                 },
                 method: "GET"
             })
-                .on("response", function (response) {
+                .on("response", function (response: any) {
                     // console.log(response.statusCode);
 
                     if (response.statusCode !== 200) {
@@ -170,22 +160,22 @@ module.exports = class GraphAPi {
                 .on("data", function (chunk) {
                     body.push(chunk);
                 })
-                .on("error", function (error) {
+                .on("error", function (error: any) {
                     console.error("Unable to fetch profile:" + error);
                     reject(Error("Network Error"));
                 })
                 .on("end", () => {
-                    body = Buffer.concat(body).toString();
+                    const res = Buffer.concat(body).toString();
                     // console.log(JSON.parse(body));
 
-                    resolve(JSON.parse(body));
+                    resolve(JSON.parse(res));
                 });
         });
     }
 
     static getPersonaAPI() {
         return new Promise(function (resolve, reject) {
-            let body = [];
+            let body: any[] = [];
 
             // Send the POST request to the Personas API
             console.log(`Fetching personas for app ${config.appId}`);
@@ -197,31 +187,31 @@ module.exports = class GraphAPi {
                 },
                 method: "GET"
             })
-                .on("response", function (response) {
+                .on("response", function (response: any) {
                     // console.log(response.statusCode);
 
                     if (response.statusCode !== 200) {
                         reject(Error(response.statusCode));
                     }
                 })
-                .on("data", function (chunk) {
+                .on("data", function (chunk: any) {
                     body.push(chunk);
                 })
-                .on("error", function (error) {
+                .on("error", function (error: any) {
                     console.error("Unable to fetch personas:" + error);
                     reject(Error("Network Error"));
                 })
                 .on("end", () => {
-                    body = Buffer.concat(body).toString();
+                    const res = Buffer.concat(body).toString();
                     // console.log(JSON.parse(body));
 
-                    resolve(JSON.parse(body).data);
+                    resolve(JSON.parse(res).data);
                 });
         });
     }
 
-    static postPersonaAPI(name, profile_picture_url) {
-        let body = [];
+    static postPersonaAPI(name: any, profile_picture_url: any) {
+        let body: any[] = [];
 
         return new Promise(function (resolve, reject) {
             // Send the POST request to the Personas API
@@ -240,24 +230,24 @@ module.exports = class GraphAPi {
                 method: "POST",
                 json: requestBody
             })
-                .on("response", function (response) {
+                .on("response", function (response: any) {
                     // console.log(response.statusCode);
                     if (response.statusCode !== 200) {
                         reject(Error(response.statusCode));
                     }
                 })
-                .on("data", function (chunk) {
+                .on("data", function (chunk: any) {
                     body.push(chunk);
                 })
-                .on("error", function (error) {
+                .on("error", function (error: any) {
                     console.error("Unable to create a persona:", error);
                     reject(Error("Network Error"));
                 })
                 .on("end", () => {
-                    body = Buffer.concat(body).toString();
+                    const res = Buffer.concat(body).toString();
                     // console.log(JSON.parse(body));
 
-                    resolve(JSON.parse(body).id);
+                    resolve(JSON.parse(res).id);
                 });
         }).catch(error => {
             console.error("Unable to create a persona:", error, body);
@@ -278,7 +268,7 @@ module.exports = class GraphAPi {
                 },
                 method: "POST"
             },
-            (error, _res, body) => {
+            (error: any, _res: any, body: any) => {
                 if (!error) {
                     console.log("Request sent:", body);
                 } else {
@@ -288,7 +278,7 @@ module.exports = class GraphAPi {
         );
     }
 
-    static callFBAEventsAPI(senderPsid, eventName) {
+    static callFBAEventsAPI(senderPsid: string, eventName: string) {
         // Construct the message body
         let requestBody = {
             event: "CUSTOM_APP_EVENTS",
@@ -313,7 +303,7 @@ module.exports = class GraphAPi {
                 method: "POST",
                 form: requestBody
             },
-            error => {
+            (error: any) => {
                 if (!error) {
                     console.log(`FBA event '${eventName}'`);
                 } else {

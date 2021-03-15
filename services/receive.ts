@@ -2,14 +2,16 @@
 "use strict";
 
 
-const Response = require("./response")
-const GraphAPi = require("./graph-api")
-const i18n = require("../i18n.config")
-const _payload = require("../config/payload")
-const Faculty = require("./faculty")
+import Response from "./response"
+import GraphAPi from "./graph-api"
+import i18n from "../i18n.config"
+import _payload from "../config/payload"
+import Faculty from "./faculty"
 
-module.exports = class Receive {
-    constructor(user, webhookEvent) {
+export default class Receive {
+    user: any
+    webhookEvent: any
+    constructor(user?: any, webhookEvent?: any) {
         this.user = user;
         this.webhookEvent = webhookEvent;
     }
@@ -161,7 +163,7 @@ module.exports = class Receive {
         return this.handlePayload(payload);
     }
 
-    handlePayload(payload) {
+    handlePayload(payload: string) {
         console.log("Received Payload:", `${payload} for ${this.user.psid}`);
 
         // Log CTA event in FBA
@@ -195,7 +197,7 @@ module.exports = class Receive {
         return response;
     }
 
-    handlePrivateReply(type, object_id) {
+    handlePrivateReply(type: string, object_id: string) {
         let welcomeMessage = i18n.__("get_started.welcome") + " " +
             i18n.__("get_started.guidance") + ". " +
             i18n.__("get_started.help");
@@ -221,7 +223,7 @@ module.exports = class Receive {
         GraphAPi.callSendAPI(requestBody);
     }
 
-    sendMessage(response, delay = 0) {
+    sendMessage(response: any, delay: number = 0) {
         // Check if there is delay in the response
         if ("delay" in response) {
             delay = response["delay"];
@@ -229,7 +231,7 @@ module.exports = class Receive {
         }
 
         // Construct the message body
-        let requestBody = {
+        let requestBody: any = {
             recipient: {
                 id: this.user.psid
             },
@@ -238,7 +240,7 @@ module.exports = class Receive {
 
         // Check if there is persona id in the response
         if ("persona_id" in response) {
-            let persona_id = response["persona_id"];
+            let persona_id = response["persona_id"]
             delete response["persona_id"];
 
             requestBody = {
@@ -255,7 +257,7 @@ module.exports = class Receive {
         }, delay);
     }
 
-    firstEntity(nlp, name) {
+    firstEntity(nlp: any, name: string) {
         return nlp && nlp.entities && nlp.entities[name] && nlp.entities[name][0];
     }
 

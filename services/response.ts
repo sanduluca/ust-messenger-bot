@@ -1,13 +1,13 @@
 
 "use strict";
 
-const i18n = require("../i18n.config");
-const _payload = require("../config/payload");
-const config = require("../config");
+import i18n from "../i18n.config"
+import _payload from "../config/payload"
+import config from "../config"
 
-module.exports = class Response {
-  static genQuickReplys(text, quickReplies) {
-    let response = {
+export default class Response {
+  static genQuickReplys(text: string, quickReplies: any[]) {
+    const response: any = {
       text: text,
       quick_replies: []
     };
@@ -23,14 +23,14 @@ module.exports = class Response {
     return response;
   }
 
-  static genQuickReplyBtn(title, payload) {
+  static genQuickReplyBtn(title: string, payload: any) {
     return {
       title,
       payload
     }
   }
 
-  static genQuickReplyBtnWithImg(title, payload, image_url) {
+  static genQuickReplyBtnWithImg(title: string, payload: any, image_url: string) {
     return {
       title,
       payload,
@@ -38,7 +38,7 @@ module.exports = class Response {
     }
   }
 
-  static genGenericTemplate(image_url, title, subtitle, buttons) {
+  static genGenericTemplate(image_url: string, title: string, subtitle: string, buttons: any[]) {
     let response = Response.genGenericTemplateFrom([
       {
         title,
@@ -51,7 +51,7 @@ module.exports = class Response {
     return response;
   }
 
-  static genGenericTemplateFrom(elements) {
+  static genGenericTemplateFrom(elements: any) {
     let response = {
       attachment: {
         type: "template",
@@ -65,7 +65,7 @@ module.exports = class Response {
     return response;
   }
 
-  static genGenericTemplateElement(image_url, title, subtitle, buttons) {
+  static genGenericTemplateElement(image_url: string, title: string, subtitle: string, buttons: any[]) {
     return {
       title,
       subtitle,
@@ -74,7 +74,7 @@ module.exports = class Response {
     }
   }
 
-  static genImageTemplate(image_url, title, subtitle = "") {
+  static genImageTemplate(image_url: string, title: string, subtitle = "") {
     let response = Response.genGenericTemplateFrom([
       {
         title,
@@ -86,7 +86,7 @@ module.exports = class Response {
     return response;
   }
 
-  static genButtonTemplate(title, buttons) {
+  static genButtonTemplate(title: string, buttons: any[]) {
     let response = {
       attachment: {
         type: "template",
@@ -101,12 +101,12 @@ module.exports = class Response {
     return response;
   }
 
-  static genText(text) {
+  static genText(text: string) {
     return text.split(config.newMessageSign)
-      .map(text => ({ text }))
+      .map(t => ({ text: t }))
   }
 
-  static genTextWithPersona(text, persona_id) {
+  static genTextWithPersona(text: string, persona_id: string) {
     let response = {
       text: text,
       persona_id: persona_id
@@ -115,7 +115,7 @@ module.exports = class Response {
     return response;
   }
 
-  static genPostbackButton(title, payload) {
+  static genPostbackButton(title: string, payload: any) {
     let response = {
       type: "postback",
       title: title,
@@ -125,7 +125,7 @@ module.exports = class Response {
     return response;
   }
 
-  static genWebUrlButton(title, url, webview_height_ratio = "full") {
+  static genWebUrlButton(title: string, url: string, webview_height_ratio = "full") {
     let response = {
       type: "web_url",
       title,
@@ -137,7 +137,7 @@ module.exports = class Response {
     return response;
   }
 
-  static genNuxMessage(user) {
+  static genNuxMessage(user: any) {
     let welcome = this.genText(
       i18n.__("get_started.welcome", {
         userFirstName: user.firstName

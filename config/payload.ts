@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   FACULTY: "FACULTY",
   FACULTY_STUDY_FORMS: {
     FMTI: "FACULTY/STUDY_FORMS/FMTI",
@@ -17,9 +17,9 @@ module.exports = {
   HELP: "HELP",
   ADMITTANCE: "ADMITTANCE",
   GET_STARTED: "GET_STARTED",
-  STUDY_FORM:{
-    BACHELOR:"BACHELOR",
-    MASTER:"MASTER",
-    PHD:"PHD"
+  STUDY_FORM: {
+    BACHELOR: "BACHELOR",
+    MASTER: "MASTER",
+    PHD: "PHD"
   }
 }

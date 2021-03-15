@@ -1,18 +1,17 @@
 
 "use strict";
+import express from "express"
+import { urlencoded, json } from "body-parser"
+import verifyRequestSignature from "./helpers/verifyRequestSignature"
+import path from "path"
+import config from "./config"
+import routes from "./routes"
+import apiRoutes from "./routes/api"
+import mongoose from "mongoose"
+import cors from "cors";
 
-// Imports dependencies and set up http server
-const express = require("express"),
-    { urlencoded, json } = require("body-parser"),
-    { verifyRequestSignature } = require("./helpers/verifyRequestSignature"),
-    path = require("path"),
-    config = require("./config"),
-    routes = require('./routes'),
-    apiRoutes = require('./routes/api'),
-    app = express(),
-    mongoose = require('mongoose'),
-    cors = require('cors');
 
+const app = express()
 app.use(cors())
 
 
@@ -45,7 +44,7 @@ config.checkEnvVariables();
 
 // listen for requests :)
 const listener = app.listen(config.port, function () {
-    console.log("Your app is listening on port " + listener.address().port);
+    console.log("Your app is listening on port " + listener.address());
 
     if (
         Object.keys(config.personas).length == 0 &&

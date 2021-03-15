@@ -2,13 +2,13 @@
 "use strict";
 
 // Imports dependencies
-const GraphAPi = require("./graph-api")
-const i18n = require("../i18n.config")
-const config = require("../config")
-const _payload = require("../config/payload")
+import GraphAPi from "./graph-api"
+import i18n from "../i18n.config"
+import config from "../config"
+import _payload from "../config/payload"
 const locales = i18n.getLocales()
 
-module.exports = class Profile {
+export default class Profile {
     setWebhook() {
         GraphAPi.callSubscriptionsAPI();
         GraphAPi.callSubscribedApps();
@@ -33,7 +33,7 @@ module.exports = class Profile {
         let newPersonas = config.newPersonas;
 
         GraphAPi.getPersonaAPI()
-            .then(personas => {
+            .then((personas: any[]) => {
                 for (let persona of personas) {
                     config.pushPersona({
                         name: persona.name,
@@ -119,7 +119,7 @@ module.exports = class Profile {
         };
     }
 
-    getGreetingText(locale) {
+    getGreetingText(locale: string) {
         let param = locale === config.defaultLocale ? "default" : locale;
 
         i18n.setLocale(locale);
@@ -135,7 +135,7 @@ module.exports = class Profile {
         return localizedGreeting;
     }
 
-    getMenuItems(locale) {
+    getMenuItems(locale: string) {
         let param = locale === config.defaultLocale ? "default" : locale;
 
         i18n.setLocale(locale);

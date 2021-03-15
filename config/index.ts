@@ -1,8 +1,9 @@
 
 "use strict";
+import dotenv from "dotenv"
 
 // Use dotenv to read .env vars into Node
-require("dotenv").config();
+dotenv.config();
 
 // Required environment variables
 const ENV_VARS = [
@@ -15,7 +16,7 @@ const ENV_VARS = [
     "SITE_URL"
 ];
 
-module.exports = {
+export default {
     mongodb: process.env.MONGODB,
     mongodbOptions: {
         useNewUrlParser: true,
@@ -97,7 +98,7 @@ module.exports = {
         ];
     },
 
-    pushPersona(persona) {
+    pushPersona(persona: any) {
         this.personas[persona.name] = persona.id;
     },
 

@@ -1,7 +1,7 @@
 
-const i18n = require("i18n");
-const path = require("path");
-const config = require("./config");
+import i18n from "i18n"
+import path from "path"
+import config from "./config"
 
 i18n.configure({
   locales: [
@@ -19,4 +19,4 @@ i18n.configure({
   }
 });
 
-module.exports = i18n;
+export default i18n;
