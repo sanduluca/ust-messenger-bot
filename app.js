@@ -8,8 +8,12 @@ const express = require("express"),
     path = require("path"),
     config = require("./config"),
     routes = require('./routes'),
+    apiRoutes = require('./routes/api'),
     app = express(),
-    mongoose = require('mongoose');
+    mongoose = require('mongoose'),
+    cors = require('cors');
+
+app.use(cors())
 
 
 // Parse application/x-www-form-urlencoded
@@ -33,6 +37,7 @@ app.use(express.static(path.join(path.resolve(), "public")));
 app.set("view engine", "ejs");
 
 app.use('/', routes);
+app.use('/api/v1/', apiRoutes);
 
 
 // Check if all environment variables are set
