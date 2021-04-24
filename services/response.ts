@@ -161,6 +161,6 @@ export default class Response {
       }
     ]);
 
-    return [welcome, guide, curation];
+    return [...welcome, ...guide, curation];
   }
 };
