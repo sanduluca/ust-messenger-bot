@@ -15,8 +15,8 @@
     "complete_now": "Completeaza acum",
     "get_started": {
         "welcome": "Buna, {{userFirstName}}! Bine ai venit la UST! Prima universitate din Republica Moldova.",
-        "guidance": "Pentru alegerea optiunilor, foloseste meniul de mai jos.",
-        "help": "Cu ce te putem ajuta?"
+        "guidance": "Eu sunt un asistent virtual. In orice moment poti folosi meniul de mai jos.",
+        "help": "Cu ce te putem ajuta astazi?"
     },
     "survey": {
         "prompt": "Bună, vreau să primesc feedback rapid despre experiența dvs. recentă cu {{agentFirstName}}",
