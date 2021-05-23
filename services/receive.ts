@@ -7,6 +7,7 @@ import GraphAPi from "./graph-api"
 import i18n from "../i18n.config"
 import _payload from "../config/payload"
 import Faculty from "./faculty"
+import config from "../config"
 
 export default class Receive {
     user: any
@@ -87,6 +88,22 @@ export default class Receive {
             response = this.handlePayload(_payload.ADMITTANCE)
         } else if (message.includes('wifi')) {
             response = Response.genText(i18n.__('wifi_settings'))
+        } else if (message.includes('militar')) {
+            response =
+                Response.genGenericTemplateFrom([
+                    Response.genGenericTemplateElement(
+                        `${config.appUrl}/military.jpg`,
+                        i18n.__("military"),
+                        undefined,
+                        [
+                            Response.genWebUrlButton(
+                                i18n.__("view"),
+                                'https://ust.md/subdiviziuni-universitare/alte-subdiviziuni/catedra-militara/',
+                                'tall'
+                            )
+                        ]
+                    )
+                ])
         } else {
             response = [
                 ...Response.genText(
