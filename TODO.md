@@ -1,0 +1,11 @@
+## TODO list
+- [x] Link to site
+- [x] Faculties
+- [x] Study forms
+- [x] Faculties schedules
+- [ ] Talk to agent
+- [x] Contacts
+- [ ] Price for scolarship
+- [x] Address
+- [x] Wifi password
+- [x] Catedra militara
