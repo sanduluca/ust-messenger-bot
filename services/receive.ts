@@ -69,7 +69,7 @@ export default class Receive {
         // check greeting is here and is confident
         let greeting = this.firstEntity(this.webhookEvent.message.nlp, "greetings");
 
-        let message = this.webhookEvent.message.text.trim().toLowerCase();
+        let message: string = this.webhookEvent.message.text.trim().toLowerCase();
 
         let response;
 
@@ -83,6 +83,8 @@ export default class Receive {
             response = Response.genText(i18n.__("address"))
         } else if (message.includes('contact') || message.includes('контакт')) {
             response = Response.genText(i18n.__("contact"))
+        } else if (message.includes('admitere') || message.includes('admission')) {
+            response = this.handlePayload(_payload.ADMITTANCE)
         } else {
             response = [
                 ...Response.genText(
