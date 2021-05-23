@@ -85,6 +85,8 @@ export default class Receive {
             response = Response.genText(i18n.__("contact"))
         } else if (message.includes('admitere') || message.includes('admission')) {
             response = this.handlePayload(_payload.ADMITTANCE)
+        } else if (message.includes('wifi')) {
+            response = Response.genText(i18n.__('wifi_settings'))
         } else {
             response = [
                 ...Response.genText(
